@@ -1,26 +1,20 @@
 import { Link } from "react-router-dom";
-import logo from '../images/logo_1.png'
-
-export default function MainBar(){
-
-   
+import logo from '../images/logo_1.png';
 
 
+export default function MainBar({type}){
 
+    
     return(
         <div className="mainBar">
             <img src={logo} alt='Logo'/>
-            <div className="r1">
-                <Link className="link" to={'/searchRooms'}>Pretraga</Link>
-                <Link className="link" to={'/favoriteRooms'}>Sacuvani oglasi</Link>
-                <Link className="link" to={'/login'}>Prijavi se</Link>
-
+                <div className="r1 nav navbar-nav navbar-right" type='home'>
+                    <Link className="link scroll" to={'/searchRooms'}>Pretrazi</Link>
+                    <Link className="link scroll" to={'/favoriteRooms'}>Sacuvani oglasi</Link>
+                    <Link className="link scroll" to={'/login'}>Prijavi se</Link>
+                    
+                    </div>
                 
-                </div>
-
-
-
-
 
         </div>
     )
