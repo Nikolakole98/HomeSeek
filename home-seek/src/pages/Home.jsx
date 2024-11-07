@@ -1,16 +1,41 @@
+import {useState} from 'react';
+import { NavLink } from "react-router-dom";
 import FrontEnd from "../components/Frontend";
-import MainBar from "../components/MainBar";
 import Room from "../components/RoomContext";
 import roomImg from '../images/room.jpg';
+import Login from '../pages/Login';
+import { Link } from "react-router-dom";
+import logo from '../images/logo_1.png'; 
 
 
 
 export default function Home(){
-    
+    const [openModal,setOpenModal]=useState(false);
+	const [openHome,setOpenHome]=useState(true);
+
+	function onButtonClick(){
+		setOpenModal(true);
+		setOpenHome(false);
+	};
+
     return(
         <>
-            <MainBar/>
-            <section id="home" className="welcome-hero">
+
+		{openModal && <Login open={openModal}/>}
+             <div className="mainBar">
+            <img src={logo} alt='Logo'/>
+                <div className="r1 nav navbar-nav navbar-right" type='home'>
+                    <Link className="link scroll" to={'/'}><i class="bi bi-house-door"></i> Pocetna strana</Link>
+                    <Link className="link scroll" to={'/searchRooms'}><i class="bi bi-search"></i> Pretrazi</Link>
+                    <Link className="link scroll" to={'/favoriteRooms'}><i class="bi bi-heart-fill"></i> Sacuvani oglasi</Link>
+                    <button className="link scroll"
+						onClick={()=>onButtonClick()}>
+                        <i class="bi bi-box-arrow-in-left"></i> Prijavi se</button>
+                    </div>
+        </div>
+			{openHome && (
+			<div>
+			<section id="home" className="welcome-hero">
                 <div className="container">
                   <div className="welcome-hero-txt">
                     <h2>Najbolja mesta za vas i <br/> to je sve sto vam je potrebno </h2>
@@ -22,6 +47,7 @@ export default function Home(){
                     <div className="welcome-hero-form">
                       <div className="single-welcome-hero-form">
                         <form action="index.html">
+                        <i class="bi bi-house-door-fill"></i>
                           <input type="text" placeholder="Tip nekretnine.." />
                         </form>
                         <div className="welcome-hero-form-icon">
@@ -31,6 +57,7 @@ export default function Home(){
                       <div className="single-welcome-hero-form">
                         
                         <form action="index.html">
+                        <i class="bi bi-geo-alt-fill"></i>
                           <input type="text" placeholder="Lokacija" />
                         </form>
                         <div className="welcome-hero-form-icon">
@@ -39,9 +66,9 @@ export default function Home(){
                       </div>
                     </div>
                     <div className="welcome-hero-serch">
-                      <button className="welcome-hero-btn" onclick="window.location.href='#'">
-                        Pretrazi <i data-feather="search"></i> 
-                      </button>
+                      <NavLink className="welcome-hero-btn" to='/searchRooms'>
+                      <i class="bi bi-search"></i> Pretrazi 
+                      </NavLink>
                     </div>
                   </div>
                 </div>
@@ -56,16 +83,16 @@ export default function Home(){
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-									<i className="flaticon-restaurant"></i>
+                <img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Stanovi</a></h2>
-								<p>150 oglasa</p>
+                  <p>214 oglasa</p>
 							</div>
 						</li>
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-									<i className="flaticon-travel"></i>
+                <img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Kuce</a></h2>
 								<p>214 oglasa</p>
@@ -74,7 +101,7 @@ export default function Home(){
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-									<i className="flaticon-building"></i>
+                <img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Lokali</a></h2>
 								<p>185 oglasa</p>
@@ -83,7 +110,7 @@ export default function Home(){
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-									<i className="flaticon-pills"></i>
+                <img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Placevi</a></h2>
 								<p>200 oglasa</p>
@@ -92,7 +119,7 @@ export default function Home(){
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-									<i className="flaticon-transport"></i>
+                <img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Vikendice</a></h2>
 								<p>120 oglasa</p>
@@ -111,7 +138,7 @@ export default function Home(){
 				</div>
 				<div className="works-content">
 					<div className="row">
-						<div className="col-md-2 col-sm-2">
+						<div className="col-md-2 col-sm-2 works">
 							<div className="single-how-works">
 								<div className="single-how-works-icon">
 									<i className="flaticon-lightbulb-idea"></i>
@@ -125,7 +152,7 @@ export default function Home(){
 								</button>
 							</div>
 						</div>
-						<div className="col-md-4 col-sm-6">
+						<div className="col-md-2 col-sm-2 works">
 							<div className="single-how-works">
 								<div className="single-how-works-icon">
 									<i className="flaticon-networking"></i>
@@ -139,7 +166,7 @@ export default function Home(){
 								</button>
 							</div>
 						</div>
-						<div className="col-md-4 col-sm-6">
+						<div className="col-md-2 col-sm-2 works">
 							<div className="single-how-works">
 								<div className="single-how-works-icon">
 									<i className="flaticon-location-on-road"></i>
@@ -210,6 +237,8 @@ export default function Home(){
 
             
             <FrontEnd/>
+			</div>)}
+          
         </>
     )
 }

@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import logo from '../images/logo_1.png'
 
 
 function onButtonClick(){
 
 };
-const Login = (props) => {
+function Login({open}){
+  const [openModal,setOpenModal]=useState(open);
+  const [openHome,setOpenHome]=useState(true);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
-
-  const navigate = useNavigate()
-  return (
-    <div className='bodyLogin'>
-        <div className={'loginContainer'}>
-        
-        
-      <div className={'loginTitle'}>
+  
+  return((openHome)&&(openModal)&&(
+    <div className='modalBackground'>
+        <div className='loginContainer'>
+      <div className='loginTitle'>
             <NavLink to={'/'}><img src={logo} alt='Logo'/></NavLink>
+            <button className='close-btn' onClick={()=>setOpenModal(false),()=>setOpenHome(true)}>Close</button>
             <div>Prijavite se</div>
       </div>
       <br/>
@@ -30,7 +28,7 @@ const Login = (props) => {
             placeholder="Enter your email here"
             onChange={(ev) => setEmail(ev.target.value)}  
             className={'inputBox'}/>
-        	    <label className="errorLabel">{emailError}</label>
+        	    
       </div>
       <br />
       <div className={'inputLogin'}>
@@ -39,7 +37,7 @@ const Login = (props) => {
             placeholder="Enter your password here"
             onChange={(ev) => setPassword(ev.target.value)} 
             className={'inputBox'} />
-        	    <label className="errorLabel">{passwordError}</label>
+        	    
       </div>
       <br/>
       <div className='row'>
@@ -62,10 +60,11 @@ const Login = (props) => {
         
         </p>
       </div>
+      
     </div>
     </div>
     
-  )
+  ));
 }
 
 export default Login
