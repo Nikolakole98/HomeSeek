@@ -1,41 +1,17 @@
-import {useState} from 'react';
 import { NavLink } from "react-router-dom";
 import FrontEnd from "../components/Frontend";
 import Room from "../components/RoomContext";
-import roomImg from '../images/room.jpg';
-import Login from '../pages/Login';
-import { Link } from "react-router-dom";
-import logo from '../images/logo_1.png'; 
-
-
+import roomImg from '../images/room.jpg'; 
+import MainBar from "../components/MainBar";
 
 export default function Home(){
-    const [openModal,setOpenModal]=useState(false);
-	const [openHome,setOpenHome]=useState(true);
-
-	function onButtonClick(){
-		setOpenModal(true);
-		setOpenHome(false);
-	};
+	
 
     return(
-        <>
-
-		{openModal && <Login open={openModal}/>}
-             <div className="mainBar">
-            <img src={logo} alt='Logo'/>
-                <div className="r1 nav navbar-nav navbar-right" type='home'>
-                    <Link className="link scroll" to={'/'}><i class="bi bi-house-door"></i> Pocetna strana</Link>
-                    <Link className="link scroll" to={'/searchRooms'}><i class="bi bi-search"></i> Pretrazi</Link>
-                    <Link className="link scroll" to={'/favoriteRooms'}><i class="bi bi-heart-fill"></i> Sacuvani oglasi</Link>
-                    <button className="link scroll"
-						onClick={()=>onButtonClick()}>
-                        <i class="bi bi-box-arrow-in-left"></i> Prijavi se</button>
-                    </div>
-        </div>
-			{openHome && (
-			<div>
-			<section id="home" className="welcome-hero">
+		<>
+		
+			<section id="home" className="home welcome-hero">
+			<MainBar/>
                 <div className="container">
                   <div className="welcome-hero-txt">
                     <h2>Najbolja mesta za vas i <br/> to je sve sto vam je potrebno </h2>
@@ -47,7 +23,7 @@ export default function Home(){
                     <div className="welcome-hero-form">
                       <div className="single-welcome-hero-form">
                         <form action="index.html">
-                        <i class="bi bi-house-door-fill"></i>
+                        <i className="bi bi-house-door-fill"></i>
                           <input type="text" placeholder="Tip nekretnine.." />
                         </form>
                         <div className="welcome-hero-form-icon">
@@ -57,7 +33,7 @@ export default function Home(){
                       <div className="single-welcome-hero-form">
                         
                         <form action="index.html">
-                        <i class="bi bi-geo-alt-fill"></i>
+                        <i className="bi bi-geo-alt-fill"></i>
                           <input type="text" placeholder="Lokacija" />
                         </form>
                         <div className="welcome-hero-form-icon">
@@ -67,7 +43,7 @@ export default function Home(){
                     </div>
                     <div className="welcome-hero-serch">
                       <NavLink className="welcome-hero-btn" to='/searchRooms'>
-                      <i class="bi bi-search"></i> Pretrazi 
+                      <i className="bi bi-search"></i> Pretrazi 
                       </NavLink>
                     </div>
                   </div>
@@ -75,6 +51,8 @@ export default function Home(){
 
 		</section>
             
+	
+		
     
 		<section id="list-topics" className="list-topics">
 			<div className="container">
@@ -83,10 +61,10 @@ export default function Home(){
 						<li>
 							<div className="single-list-topics-content">
 								<div className="single-list-topics-icon">
-                <img src={roomImg} alt=' '/>
+                					<img src={roomImg} alt=' '/>
 								</div>
 								<h2><a href="# ">Stanovi</a></h2>
-                  <p>214 oglasa</p>
+                  					<p>214 oglasa</p>
 							</div>
 						</li>
 						<li>
@@ -140,46 +118,21 @@ export default function Home(){
 					<div className="row">
 						<div className="col-md-2 col-sm-2 works">
 							<div className="single-how-works">
-								<div className="single-how-works-icon">
-									<i className="flaticon-lightbulb-idea"></i>
-								</div>
-								<h2><a href="# ">Izaberite sta vam treba</a></h2>
+								<h2><a href="# ">Pronadjite nekretninu koja vam odgovara!</a></h2>
 								<p>
 									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
 								</p>
-								<button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-									Saznaj vise
-								</button>
 							</div>
 						</div>
 						<div className="col-md-2 col-sm-2 works">
 							<div className="single-how-works">
-								<div className="single-how-works-icon">
-									<i className="flaticon-networking"></i>
-								</div>
-								<h2><a href="# ">Pronadjite sta vam odgovara</a></h2>
+								<h2><a href="# ">Postavite oglas za svoju nekretninu!</a></h2>
 								<p>
 									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
 								</p>
-								<button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-									Saznaj vise
-								</button>
 							</div>
 						</div>
-						<div className="col-md-2 col-sm-2 works">
-							<div className="single-how-works">
-								<div className="single-how-works-icon">
-									<i className="flaticon-location-on-road"></i>
-								</div>
-								<h2><a href="# ">Ostvarite kontakt sa prodavcem</a></h2>
-								<p>
-									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
-								</p>
-								<button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-									Saznaj vise
-								</button>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -188,16 +141,16 @@ export default function Home(){
 		<section id="explore" className="explore">
 			<div className="container">
 				<div className="section-header">
-					<h2>explore</h2>
-					<p>Explore New place, food, culture around the world and many more</p>
+					<h2>Istaknuti oglasi</h2>
+					<p></p>
 				</div>
 				<div className="explore-content">
 					<div className=" homeRooms row">
-            <Room id={1}/>
-            <Room id={2}/>
-            <Room id={3}/>
-            <Room id={4}/>
-            <Room id={5}/>
+						<Room id={1}/>
+						<Room id={2}/>
+						<Room id={3}/>
+						<Room id={4}/>
+						<Room id={5}/>
 						
 					</div>
 				</div>
@@ -221,7 +174,7 @@ export default function Home(){
 						<div className="subscription-input-group">
 							<form action="#">
 								<input type="email" className="subscription-input-form" placeholder="Enter your email here"/>
-								<button className="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+								<button className="appsLand-btn subscribe-btn" onClick="window.location.href='#'">
 									creat account
 								</button>
 							</form>
@@ -230,15 +183,12 @@ export default function Home(){
 				</div>
 			</div>
 
-		</section>
-	
-
-
-
-            
+		</section> 
             <FrontEnd/>
-			</div>)}
-          
-        </>
-    )
+		</>
+			
+			
+
+       
+    );
 }

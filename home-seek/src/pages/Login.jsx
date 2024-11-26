@@ -3,21 +3,26 @@ import { NavLink} from 'react-router-dom'
 import logo from '../images/logo_1.png'
 
 
-function onButtonClick(){
 
+function onButtonClick(){
+  console.log('prijevite se');
 };
-function Login({open}){
-  const [openModal,setOpenModal]=useState(open);
-  const [openHome,setOpenHome]=useState(true);
+function Login(){
+  
+  
+  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  return((openHome)&&(openModal)&&(
-    <div className='modalBackground'>
+  return(
+   <div className='modalBackground'>
         <div className='loginContainer'>
+        <div>
+          <img src={logo} alt='Logo'/>
+          </div>
       <div className='loginTitle'>
-            <NavLink to={'/'}><img src={logo} alt='Logo'/></NavLink>
-            <button className='close-btn' onClick={()=>setOpenModal(false),()=>setOpenHome(true)}>Close</button>
+            
+            
             <div>Prijavite se</div>
       </div>
       <br/>
@@ -64,7 +69,8 @@ function Login({open}){
     </div>
     </div>
     
-  ));
+    
+  );
 }
 
 export default Login
