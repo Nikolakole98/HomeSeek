@@ -9,9 +9,6 @@ export default function RoomPage(){
         <>           
         <MainBar/>
         <div className="roomConteiner">
-                <div className="navigationBar">
-                    <p> <i className="bi bi-house-door"></i> / Kuca / Prodaja / Nis</p>
-                </div>
             <div className="room">
                 
                 <div className="nameAdvertisement">
