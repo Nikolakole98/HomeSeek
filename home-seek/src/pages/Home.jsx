@@ -1,138 +1,112 @@
-import { NavLink } from "react-router-dom";
 import FrontEnd from "../components/Frontend";
+<<<<<<< HEAD
+=======
 import Room from "../components/RoomContext";
+import roomImg from '../images/room.jpg'; 
+>>>>>>> parent of 963ad23 (version_2)
 import MainBar from "../components/MainBar";
 
-export default function Home(){
-	
 
+export default function Home(){
     return(
 		<>
+<<<<<<< HEAD
+			{/*Hero Section*/}
 			<section className="homeBackground">
 				<MainBar/>
 				<div className="welcome-hero">
 				<div className="container welcome-txt">
+=======
+		
+			<section id="home" className="home welcome-hero">
+			<MainBar/>
+                <div className="container">
+>>>>>>> parent of 963ad23 (version_2)
                   <div className="welcome-hero-txt">
-                    <h2>Pronadjite dom u mestu koje volite</h2>
-					<p>Kada tražite nekretninu za iznajmljivanje ili kupovinu, 
-						uradite to sa poverenjem. Izračunajte svoj budžet, 
-						osvežite životne resurse za iznajmljivanje i organizujte
-						 se za selidbu sve na jednom mestu!</p>
+                    <h2>Najbolja mesta za vas i <br/> to je sve sto vam je potrebno </h2>
+                    <p>
+                      Nadjite Kuce, Stanove, Lokale i sve ostale nekretnine koje vam najbolje odgovaraju
+                    </p>
                   </div>
-                  <div className="welcome-hero-serch-box">
+                 {/*} <div className="welcome-hero-serch-box">
                     <div className="welcome-hero-form">
-						<div className="search-box-type">
-							TIP
+<<<<<<< HEAD
+						<div className="search-box-type">	
 						</div>
 						<div className="search-box-location">
-							LOKACIJA	
+							<input placeholder="Lokacija" />	
 						</div>
-						<div>
-						<i className="bi bi-search"></i>
-						</div>
-					  
-					  
+=======
+                      <div className="single-welcome-hero-form">
+                        <form action="index.html">
+                        <i className="bi bi-house-door-fill"></i>
+                          <input type="text" placeholder="Tip nekretnine.." />
+                        </form>
+                        <div className="welcome-hero-form-icon">
+                          <i className="flaticon-list-with-dots"></i>
+                        </div>
+                      </div>
+                      <div className="single-welcome-hero-form">
+                        
+                        <form action="index.html">
+                        <i className="bi bi-geo-alt-fill"></i>
+                          <input type="text" placeholder="Lokacija" />
+                        </form>
+                        <div className="welcome-hero-form-icon">
+                          <i claclassNamess="flaticon-gps-fixed-indicator"></i>
+                        </div>
+                      </div>
+>>>>>>> parent of 963ad23 (version_2)
                     </div>
                     <div className="welcome-hero-serch">
                       <NavLink className="welcome-hero-btn" to='/searchRooms'>
                       <i className="bi bi-search"></i> Pretrazi 
                       </NavLink>
                     </div>
-                  </div>
+                  </div>*/}
                 </div>
-					<div className="welcome-hero-img">
-
-						</div>
-				</div>
-				
-				
-				
+<<<<<<< HEAD
+				</div>	
 			</section>	
-			{/*<section id="works" className="works">
-			<div className="container">
-				<div className="section-header">
-					<h2>Kako radi?</h2>
-					<p>Saznaj kako radi nas sajt.</p>
+			{/*Mogucnosti sajta*/}
+			<section>
+				<div className="home-txt-1">
+					<h2>Mogucnosti sajta.</h2>
 				</div>
-				<div className="works-content">
-					<div className="row">
-						<div className="col-md-2 col-sm-2 works">
-							<div className="single-how-works">
-								<h2><a href="# ">Pronadjite nekretninu koja vam odgovara!</a></h2>
-								<p>
-									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
-								</p>
-							</div>
-						</div>
-						<div className="col-md-2 col-sm-2 works">
-							<div className="single-how-works">
-								<h2><a href="# ">Postavite oglas za svoju nekretninu!</a></h2>
-								<p>
-									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
-								</p>
-							</div>
-						</div>
-						
+				<div className="description-section">
+					<div className="description-box">
+						<h1>Pronalazenje nekretnine po zelji.</h1>
 					</div>
+					<div className="description-box">
+						<h1>Dodavanje nekretnine za prodaju ili izdavanje.</h1>
+					</div>
+					<div className="description-box">
+						<h1>Sacuvanje oglasa koji vam odgovaraju.</h1>
+					</div>
+
 				</div>
-			</div>
-		
-		</section>*/ }
-		<section id="explore" className="explore">
-			<div className="container">
-				<div className="section-header">
-					<h2>Istrazite kuce u svojoj blizini</h2>
 				
+			</section>
+			{/*Popularni oglasi*/}
+			<section>
+				<div className="home-txt-1">
+					<h2>Popularni oglasi.</h2>
 				</div>
-				<div className="explore-content">
-					<div className=" homeRooms row">
-						<Room id={1}/>
-						<Room id={2}/>
-						<Room id={3}/>
-						<Room id={4}/>
-						<Room id={5}/>
-						
-					</div>
+			</section>
+			{/*Kontaktirajte nas*/}
+			<section>
+				<div className="home-txt-1">
+					<h2>Kontaktirajte nas.</h2>
 				</div>
-			</div>
+			</section>
+   
+=======
 
 		</section>
-
-    <section id="contact"  className="subscription">
-			<div className="container">
-				<div className="subscribe-title">
-					<h2>
-						do you want to add your business listing with us?
-					</h2>
-          <br/>
-					<p>
-						Listrace offer you to list your business with us and we very much able to promote your Business.
-					</p>
-				</div>
-				<div className="row">
-					<div className="col-sm-12">
-						<div className="subscription-input-group">
-							<form action="#">
-								<input type="email" className="subscription-input-form" placeholder="Enter your email here"/>
-								<button className="appsLand-btn subscribe-btn" onClick="window.location.href='#'">
-									creat account
-								</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-			</div>
-
-		</section>
-				
-				
-				
-			
             
 	
 		
     
-		{/* 
 		<section id="list-topics" className="list-topics">
 			<div className="container">
 				<div className="list-topics-content">
@@ -187,8 +161,83 @@ export default function Home(){
 			</div>
 
 		</section>
-		 */}
-   
+    <section id="works" className="works">
+			<div className="container">
+				<div className="section-header">
+					<h2>Kako radi?</h2>
+					<p>Saznaj kako radi nas sajt.</p>
+				</div>
+				<div className="works-content">
+					<div className="row">
+						<div className="col-md-2 col-sm-2 works">
+							<div className="single-how-works">
+								<h2><a href="# ">Pronadjite nekretninu koja vam odgovara!</a></h2>
+								<p>
+									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
+								</p>
+							</div>
+						</div>
+						<div className="col-md-2 col-sm-2 works">
+							<div className="single-how-works">
+								<h2><a href="# ">Postavite oglas za svoju nekretninu!</a></h2>
+								<p>
+									Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua. 
+								</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		
+		</section>
+		<section id="explore" className="explore">
+			<div className="container">
+				<div className="section-header">
+					<h2>Istaknuti oglasi</h2>
+					<p></p>
+				</div>
+				<div className="explore-content">
+					<div className=" homeRooms row">
+						<Room id={1}/>
+						<Room id={2}/>
+						<Room id={3}/>
+						<Room id={4}/>
+						<Room id={5}/>
+						
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+    <section id="contact"  className="subscription">
+			<div className="container">
+				<div className="subscribe-title">
+					<h2>
+						do you want to add your business listing with us?
+					</h2>
+          <br/>
+					<p>
+						Listrace offer you to list your business with us and we very much able to promote your Business.
+					</p>
+				</div>
+				<div className="row">
+					<div className="col-sm-12">
+						<div className="subscription-input-group">
+							<form action="#">
+								<input type="email" className="subscription-input-form" placeholder="Enter your email here"/>
+								<button className="appsLand-btn subscribe-btn" onClick="window.location.href='#'">
+									creat account
+								</button>
+							</form>
+						</div>
+					</div>	
+				</div>
+			</div>
+
+		</section> 
+>>>>>>> parent of 963ad23 (version_2)
             <FrontEnd/>
 		</>
 			
