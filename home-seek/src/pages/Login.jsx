@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
-import { NavLink} from 'react-router-dom'
-import logo from '../images/logo_1.png'
+import { useState } from "react";
+import SignUp from "./SignUp";
+
+export default function Login(props){
+  const[buttonSignUp,setButtonSignUp]=useState(false);
+  const[buttonLogin,setButtonLogin]=useState(true);
+  function handleClose(){
+    props.setTrigger(false);
+    setButtonLogin(false);
+  }
+  function handleSignUp(){
+   
+    if(buttonLogin===true)
+    {
+      setButtonLogin(false);
+
+    }
+    setButtonSignUp(true);
+  }
+  
 
 
-
-function onButtonClick(){
-  console.log('prijevite se');
-};
-function Login(){
-  
-  
-  
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
-  return(
-   <div className='modalBackground'>
-        <div className='loginContainer'>
-        <div>
-          <img src={logo} alt='Logo'/>
-          </div>
-      <div className='loginTitle'>
-            
-            
-            <div>Prijavite se</div>
-      </div>
-      <br/>
+  return(props.trigger)?(
+    <div className='popupLogin'>
+      <div className='popupInnerLogin'>
+        <div className='closeRow'>
+          <button onClick={handleClose}>X</button>
+        </div>
+        <div className='loginTitle'>Prijavite se</div>
       <div className='loginData'>
       <div className={'inputLogin'}>
         <input 
-            value={email} 
             placeholder="Enter your email here"
-            onChange={(ev) => setEmail(ev.target.value)}  
             className={'inputBox'}/>
         	    
       </div>
       <br />
       <div className={'inputLogin'}>
         <input 
-            value={password} 
             placeholder="Enter your password here"
-            onChange={(ev) => setPassword(ev.target.value)} 
             className={'inputBox'} />
         	    
       </div>
@@ -53,24 +50,19 @@ function Login(){
       
       <br />
       <div className={'inputContainer'}>
-        <input 
-            className={'inputButton'} 
-            type="button" 
-            onClick={onButtonClick}    
-            value={'Prijavite se'} />
+        <input className={'inputButton'} type="button" value={'Prijavite se'} />
       </div>
-      <div className='row'>
+      <div className='row2'>
         <p>Nemate nalog?
-        <NavLink to={'/signUp'}> Registrujte se.</NavLink>
-        
+        <button onClick={()=>handleSignUp()}> Registrujte se.</button> 
         </p>
       </div>
-      
-    </div>
-    </div>
-    
-    
-  );
-}
 
-export default Login
+
+      </div>
+      <SignUp trigger={buttonSignUp} setTrigger={setButtonSignUp}/>
+    </div>
+  
+    
+  ):' ';
+}
