@@ -6,7 +6,9 @@ import AddRoom from './pages/AddRoom'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import FavoriteRooms from './pages/FavoriteRooms'
+import AdminPage from './pages/AdminPage'
 import { AuthProvider } from './context/AuthContext'
+import { isSupabaseConfigured } from './lib/supabase'
 
 
 const router=createBrowserRouter([
@@ -38,11 +40,24 @@ const router=createBrowserRouter([
 {
   path:'/favoriteRooms',
   element:<FavoriteRooms/>
+},
+{
+  path:'/admin',
+  element:<AdminPage/>
 }
 
 ]);
 
 function App() {
+ if (!isSupabaseConfigured) {
+  return (
+      <main className="setupNotice">
+        <h1>Supabase nije podešen</h1>
+        <p>Upišite REACT_APP_SUPABASE_URL i REACT_APP_SUPABASE_ANON_KEY u fajl .env.local i ponovo pokrenite aplikaciju.</p>
+      </main>
+  )
+ }
+
  return (
       
       <AuthProvider>

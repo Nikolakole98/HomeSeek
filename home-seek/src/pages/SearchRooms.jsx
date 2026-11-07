@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import FrontEnd from "../components/Frontend";
 import ListingCard from "../components/ListingCard";
 import MainBar from "../components/MainBar";
-import { getListings } from "../data/listingsStore";
+import LoadStatus from "../components/LoadStatus";
+import { useListings } from "../hooks/useListings";
 import "./Home.css";
 import "./SearchRooms.css";
 
@@ -24,8 +25,8 @@ function normalize(text) {
     .trim();
 }
 
-function findListings({ deal, location, type, minPrice, maxPrice, rooms, sort }) {
-  const results = getListings().filter((listing) => {
+function findListings(listings, { deal, location, type, minPrice, maxPrice, rooms, sort }) {
+  const results = listings.filter((listing) => {
     if (listing.deal !== deal) return false;
     if (location && !normalize(listing.location).includes(normalize(location))) return false;
     if (type && listing.type !== type) return false;
@@ -50,7 +51,8 @@ export default function SearchRooms() {
     rooms: searchParams.get("sobe") ?? "",
     sort: searchParams.get("sortiranje") ?? "",
   };
-  const results = findListings(filters);
+  const { listings, loading, error } = useListings();
+  const results = findListings(listings, filters);
 
   function updateFilter(name, value) {
     setSearchParams(
@@ -156,7 +158,7 @@ export default function SearchRooms() {
 
             <section className="search-results" aria-label="Rezultati pretrage">
               <div className="search-results-head">
-                <p role="status">Pronađeno oglasa: {results.length}</p>
+                <p role="status">{loading || error ? "" : `Pronađeno oglasa: ${results.length}`}</p>
                 <label>
                   Sortiraj
                   <select
@@ -171,7 +173,9 @@ export default function SearchRooms() {
                 </label>
               </div>
 
-              {results.length > 0 ? (
+              {loading || error ? (
+                <LoadStatus error={error} />
+              ) : results.length > 0 ? (
                 <ul className="home-listings">
                   {results.map((listing) => (
                     <ListingCard key={listing.id} listing={listing} />

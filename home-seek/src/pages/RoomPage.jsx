@@ -3,13 +3,16 @@ import { Link, ScrollRestoration, useLocation, useNavigate, useParams } from "re
 import { FaHeart, FaMapMarkerAlt, FaPhoneAlt, FaRegHeart } from "react-icons/fa";
 import { MdOutlineBed, MdOutlineHome, MdOutlineSell, MdOutlineSquareFoot } from "react-icons/md";
 import ContactForm from "../components/ContactForm";
+import DistanceFromAddress from "../components/DistanceFromAddress";
 import FrontEnd from "../components/Frontend";
 import ListingCard from "../components/ListingCard";
+import ListingMap from "../components/ListingMap";
 import ListingPhoto from "../components/ListingPhoto";
+import LoadStatus from "../components/LoadStatus";
 import MainBar from "../components/MainBar";
 import { useAuth } from "../context/AuthContext";
 import { CONTACT } from "../data/homeData";
-import { getListings } from "../data/listingsStore";
+import { useListings } from "../hooks/useListings";
 import { formatEuro, formatListingPrice } from "../utils/formatPrice";
 import "./Home.css";
 import "./RoomPage.css";
@@ -19,21 +22,27 @@ const dateFormat = new Intl.DateTimeFormat("sr-Latn-RS", { dateStyle: "long" });
 const cityOf = (listing) => listing.location.split(",")[0];
 
 function SaveButton({ listingId }) {
-  const { user, toggleFavorite } = useAuth();
+  const { user, loading, toggleFavorite } = useAuth();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [saving, setSaving] = useState(false);
   const saved = user?.favorites.includes(listingId) ?? false;
 
-  function toggleSaved() {
-    if (user) {
-      toggleFavorite(listingId);
-    } else {
+  async function toggleSaved() {
+    if (!user) {
       navigate(`/login?next=${encodeURIComponent(pathname)}`);
+      return;
+    }
+    setSaving(true);
+    try {
+      await toggleFavorite(listingId);
+    } finally {
+      setSaving(false);
     }
   }
 
   return (
-    <button className="room-save" type="button" aria-pressed={saved} onClick={toggleSaved}>
+    <button className="room-save" type="button" aria-pressed={saved} disabled={loading || saving} onClick={toggleSaved}>
       {saved ? <FaHeart aria-hidden="true" /> : <FaRegHeart aria-hidden="true" />}
       {saved ? "Oglas je sačuvan" : "Sačuvaj oglas"}
     </button>
@@ -68,8 +77,21 @@ function Gallery({ title, photos }) {
 
 export default function RoomPage() {
   const { id } = useParams();
-  const listings = getListings();
+  const { listings, loading, error } = useListings();
   const listing = listings.find((item) => String(item.id) === id);
+
+  if (loading || error) {
+    return (
+      <>
+        <ScrollRestoration />
+        <MainBar />
+        <main className="home">
+          <LoadStatus error={error} />
+        </main>
+        <FrontEnd />
+      </>
+    );
+  }
 
   if (!listing) {
     return (
@@ -145,6 +167,15 @@ export default function RoomPage() {
                   ))}
                 </dl>
               </section>
+
+              {listing.coordinates && (
+                <section className="room-block">
+                  <h2>Lokacija</h2>
+                  <p>{[listing.address, location].filter(Boolean).join(", ")}. Lokacija na mapi je približna.</p>
+                  <ListingMap key={listing.id} title={title} coordinates={listing.coordinates} />
+                  <DistanceFromAddress key={`distance-${listing.id}`} coordinates={listing.coordinates} city={cityOf(listing)} />
+                </section>
+              )}
             </div>
 
             <aside className="room-aside" aria-label="Cena i kontakt">

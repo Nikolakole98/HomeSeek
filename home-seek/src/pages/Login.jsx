@@ -36,7 +36,7 @@ export default function Login() {
             <h1>Prijavite se</h1>
             <p className="auth-intro">
               {searchParams.has("next")
-                ? "Prijavite se da biste sačuvali oglas."
+                ? "Prijavite se da biste nastavili."
                 : "Prijavite se i pristupite sačuvanim oglasima."}
             </p>
 

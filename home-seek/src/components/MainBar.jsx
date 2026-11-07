@@ -29,6 +29,7 @@ export default function MainBar() {
         <NavLink className="link scroll" to="/searchRooms"><FaSearch /> Pretraga oglasa</NavLink>
         <NavLink className="link scroll" to="/addRoom"><BsHouseAddFill /> Dodavanje oglasa</NavLink>
         <NavLink className="link scroll" to="/favoriteRooms"><MdFavorite /> Sačuvani oglasi</NavLink>
+        {user?.isAdmin && <NavLink className="link scroll" to="/admin">Admin</NavLink>}
         {user ? (
           <>
             <span className="userName" title={user.name}>{user.name}</span>

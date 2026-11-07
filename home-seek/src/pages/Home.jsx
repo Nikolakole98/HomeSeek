@@ -6,8 +6,10 @@ import ContactForm from "../components/ContactForm";
 import FrontEnd from "../components/Frontend";
 import HeroSearch from "../components/HeroSearch";
 import ListingCard from "../components/ListingCard";
+import LoadStatus from "../components/LoadStatus";
 import MainBar from "../components/MainBar";
-import { CONTACT, LISTINGS } from "../data/homeData";
+import { CONTACT } from "../data/homeData";
+import { useListings } from "../hooks/useListings";
 import "./Home.css";
 
 const FEATURES = [
@@ -29,6 +31,8 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const { listings, loading, error } = useListings();
+
   return (
     <>
       <MainBar />
@@ -62,11 +66,15 @@ export default function Home() {
               <h2>Popularni oglasi</h2>
               <Link className="home-link" to="/searchRooms">Svi oglasi</Link>
             </div>
-            <ul className="home-listings">
-              {LISTINGS.slice(0, 6).map((listing) => (
-                <ListingCard key={listing.id} listing={listing} />
-              ))}
-            </ul>
+            {loading || error ? (
+              <LoadStatus error={error} />
+            ) : (
+              <ul className="home-listings">
+                {listings.slice(0, 6).map((listing) => (
+                  <ListingCard key={listing.id} listing={listing} />
+                ))}
+              </ul>
+            )}
           </div>
         </section>
 

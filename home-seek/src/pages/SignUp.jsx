@@ -26,6 +26,24 @@ export default function SignUp() {
   const [accountType, setAccountType] = useState(ACCOUNT_TYPES[0].value);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false);
+
+  if (confirmationSent) {
+    return (
+      <>
+        <MainBar />
+        <main className="home">
+          <div className="home-container auth-page">
+            <div className="auth-card">
+              <h1>Proverite mejl</h1>
+              <p className="auth-intro">Poslali smo vam link za potvrdu naloga. Posle potvrde se možete prijaviti.</p>
+            </div>
+          </div>
+        </main>
+        <FrontEnd />
+      </>
+    );
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -37,8 +55,12 @@ export default function SignUp() {
     setError("");
     setSubmitting(true);
     try {
-      await register(buildProfile(form, accountType));
-      navigate(getSafeNext(searchParams), { replace: true });
+      const isLoggedIn = await register(buildProfile(form, accountType));
+      if (isLoggedIn) {
+        navigate(getSafeNext(searchParams), { replace: true });
+      } else {
+        setConfirmationSent(true);
+      }
     } catch (registerError) {
       setError(registerError.message);
       setSubmitting(false);

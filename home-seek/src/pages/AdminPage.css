@@ -1,0 +1,259 @@
+.admin-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  color-scheme: dark;
+}
+
+.admin-page h1 {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-tabs button {
+  padding: 12px 16px;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.admin-tabs button:hover,
+.admin-tabs button:focus-visible {
+  color: var(--text);
+}
+
+.admin-tabs button.selected {
+  border-bottom-color: var(--green);
+  color: var(--text);
+}
+
+.home .admin-error {
+  margin-top: 16px;
+  color: #ff8f8f;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.admin-toolbar input {
+  flex: 1;
+  min-width: 0;
+  max-width: 380px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--navy-raised);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.admin-toolbar input:focus {
+  border-color: var(--green);
+}
+
+.admin-action {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.admin-action:hover,
+.admin-action:focus-visible {
+  border-color: var(--green);
+}
+
+.admin-action.danger {
+  color: #ff8f8f;
+}
+
+.admin-action.danger:hover,
+.admin-action.danger:focus-visible {
+  border-color: #ff8f8f;
+}
+
+/* Tabele */
+.admin-table {
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background-color: var(--navy-raised);
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th {
+  padding: 12px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.home .admin-table td .home-link {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-row-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.admin-row-actions .admin-action + .admin-action {
+  margin-left: 8px;
+}
+
+.home .admin-empty {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.admin-sr-only {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Izmena oglasa */
+.admin-dialog {
+  width: min(600px, calc(100% - 32px));
+  margin: auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--text);
+  background-color: var(--navy-raised);
+  color-scheme: dark;
+}
+
+.admin-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.admin-dialog form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.admin-dialog h2 {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.admin-wide {
+  grid-column: 1 / -1;
+}
+
+.admin-dialog label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-dialog input,
+.admin-dialog select,
+.admin-dialog textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--navy);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.admin-dialog textarea {
+  padding: 10px 12px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.admin-dialog input:focus,
+.admin-dialog select:focus,
+.admin-dialog textarea:focus {
+  border-color: var(--green);
+}
+
+.admin-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.home .admin-dialog-actions .admin-action,
+.home .admin-dialog-actions .home-btn {
+  min-height: 44px;
+}
+
+/* Nema pristupa */
+.admin-denied {
+  padding: 56px 0;
+  text-align: center;
+}
+
+.home .admin-denied p {
+  margin: 10px 0 24px;
+  font-size: 16px;
+}
+
+@media (max-width: 620px) {
+  .admin-toolbar {
+    flex-direction: column;
+  }
+
+  .admin-toolbar input {
+    flex: none;
+    max-width: none;
+  }
+
+  .admin-dialog form {
+    grid-template-columns: 1fr;
+  }
+}
