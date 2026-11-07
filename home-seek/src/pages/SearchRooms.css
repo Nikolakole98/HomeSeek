@@ -1,0 +1,157 @@
+.search-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.search-page h1 {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.search-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+/* Filteri */
+.search-filters {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background-color: var(--navy-raised);
+  color-scheme: dark;
+}
+
+.search-filters .home-search-deal label {
+  flex: 1;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.search-filters > label,
+.search-price label,
+.search-results-head label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.search-price {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.search-filters > label input,
+.search-price input,
+.search-filters select,
+.search-results-head select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--navy);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.search-filters input:focus,
+.search-filters select:focus,
+.search-results-head select:focus {
+  border-color: var(--green);
+}
+
+.search-reset {
+  justify-self: start;
+  color: var(--green);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-reset:hover {
+  color: var(--green-hover);
+}
+
+.search-reset:focus-visible {
+  text-decoration: underline;
+}
+
+/* Rezultati */
+.search-results-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  color-scheme: dark;
+}
+
+.home .search-results-head p {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-results-head label {
+  grid-template-columns: auto 220px;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-results .home-listings {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 20px;
+}
+
+.search-empty {
+  margin-top: 20px;
+  padding: 56px 24px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.search-empty h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.search-empty p {
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .search-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .search-filters {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .search-results-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-results-head label {
+    grid-template-columns: auto 1fr;
+  }
+}

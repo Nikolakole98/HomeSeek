@@ -1,27 +1,47 @@
-import logo from '../images/logo_1.png';
-import { MdOutlineDarkMode } from "react-icons/md";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../images/logo_1.png";
+import { MdClose, MdFavorite, MdHomeFilled, MdMenu, MdOutlineDarkMode } from "react-icons/md";
 import { GrLanguage } from "react-icons/gr";
-import { MdHomeFilled } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { BsHouseAddFill } from "react-icons/bs";
-import { MdFavorite } from "react-icons/md";
-
+import { useAuth } from "../context/AuthContext";
 
 export default function MainBar() {
- 
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="mainBar">
-      <img src={logo} alt="Logo" />
-      <div className="r1" type="home">
-        <button className="link scroll"><MdHomeFilled/> Pocetna strana</button>
-        <button className="link scroll"><FaSearch/> Pretraga oglasa</button>
-        <button className="link scroll"><BsHouseAddFill /> Dodavanje oglasa</button>
-        <button className="link scroll"><MdFavorite/> Sacuvani oglasi</button>
+    <header className="mainBar">
+      <Link to="/">
+        <img src={logo} alt="HomeSeek" />
+      </Link>
+      <button
+        className="menuToggle"
+        aria-label="Meni"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        {menuOpen ? <MdClose /> : <MdMenu />}
+      </button>
+      <nav className={menuOpen ? "r1 open" : "r1"}>
+        <NavLink className="link scroll" to="/" end><MdHomeFilled /> Početna strana</NavLink>
+        <NavLink className="link scroll" to="/searchRooms"><FaSearch /> Pretraga oglasa</NavLink>
+        <NavLink className="link scroll" to="/addRoom"><BsHouseAddFill /> Dodavanje oglasa</NavLink>
+        <NavLink className="link scroll" to="/favoriteRooms"><MdFavorite /> Sačuvani oglasi</NavLink>
+        {user ? (
+          <>
+            <span className="userName" title={user.name}>{user.name}</span>
+            <button className="link scroll" onClick={logout}>Odjavi se</button>
+          </>
+        ) : (
+          <NavLink className="link scroll" to="/login">Prijavi se</NavLink>
+        )}
         <div className="r2">
-            <button className="link scroll icon"> <MdOutlineDarkMode/></button>
-            <button className="link scroll icon"> <GrLanguage/></button>
+          <button className="link scroll icon" aria-label="Tamna tema"><MdOutlineDarkMode /></button>
+          <button className="link scroll icon" aria-label="Jezik"><GrLanguage /></button>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

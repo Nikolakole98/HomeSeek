@@ -1,68 +1,66 @@
 import { useState } from "react";
-import SignUp from "./SignUp";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import FrontEnd from "../components/Frontend";
+import MainBar from "../components/MainBar";
+import { getSafeNext, useAuth } from "../context/AuthContext";
+import "./Home.css";
+import "./Auth.css";
 
-export default function Login(props){
-  const[buttonSignUp,setButtonSignUp]=useState(false);
-  const[buttonLogin,setButtonLogin]=useState(true);
-  function handleClose(){
-    props.setTrigger(false);
-    setButtonLogin(false);
-  }
-  function handleSignUp(){
-   
-    if(buttonLogin===true)
-    {
-      setButtonLogin(false);
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const { email, password } = Object.fromEntries(new FormData(event.target));
+    setError("");
+    setSubmitting(true);
+    try {
+      await login(email, password);
+      navigate(getSafeNext(searchParams), { replace: true });
+    } catch (loginError) {
+      setError(loginError.message);
+      setSubmitting(false);
     }
-    setButtonSignUp(true);
   }
-  
 
+  return (
+    <>
+      <MainBar />
+      <main className="home">
+        <div className="home-container auth-page">
+          <div className="auth-card">
+            <h1>Prijavite se</h1>
+            <p className="auth-intro">
+              {searchParams.has("next")
+                ? "Prijavite se da biste sačuvali oglas."
+                : "Prijavite se i pristupite sačuvanim oglasima."}
+            </p>
 
-  return(props.trigger)?(
-    <div className='popupLogin'>
-      <div className='popupInnerLogin'>
-        <div className='closeRow'>
-          <button onClick={handleClose}>X</button>
+            <form className="auth-form" onSubmit={handleSubmit}>
+              <label>
+                Mejl adresa
+                <input name="email" type="email" autoComplete="email" required />
+              </label>
+              <label>
+                Lozinka
+                <input name="password" type="password" autoComplete="current-password" required />
+              </label>
+              {error && <p className="auth-error" role="alert">{error}</p>}
+              <button className="home-btn" type="submit" disabled={submitting}>Prijavi se</button>
+            </form>
+
+            <p className="auth-switch">
+              Nemate nalog?{" "}
+              <Link className="home-link" to={`/signUp?${searchParams}`}>Registrujte se</Link>
+            </p>
+          </div>
         </div>
-        <div className='loginTitle'>Prijavite se</div>
-      <div className='loginData'>
-      <div className={'inputLogin'}>
-        <input 
-            placeholder="Enter your email here"
-            className={'inputBox'}/>
-        	    
-      </div>
-      <br />
-      <div className={'inputLogin'}>
-        <input 
-            placeholder="Enter your password here"
-            className={'inputBox'} />
-        	    
-      </div>
-      <br/>
-      <div className='row'>
-        <p>Zaboravili ste sifru?</p>
-      </div>
-      <br/>
-      </div>
-      
-      <br />
-      <div className={'inputContainer'}>
-        <input className={'inputButton'} type="button" value={'Prijavite se'} />
-      </div>
-      <div className='row2'>
-        <p>Nemate nalog?
-        <button onClick={()=>handleSignUp()}> Registrujte se.</button> 
-        </p>
-      </div>
-
-
-      </div>
-      <SignUp trigger={buttonSignUp} setTrigger={setButtonSignUp}/>
-    </div>
-  
-    
-  ):' ';
+      </main>
+      <FrontEnd />
+    </>
+  );
 }

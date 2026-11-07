@@ -1,0 +1,133 @@
+.auth-page {
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+.auth-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background-color: var(--navy-raised);
+  color-scheme: dark;
+}
+
+.auth-card h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.home .auth-intro {
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.auth-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.auth-form .home-search-deal {
+  color-scheme: light;
+}
+
+.auth-form .home-search-deal label {
+  flex: 1;
+  justify-content: center;
+  min-height: 42px;
+}
+
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-form > label,
+.auth-row label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-form > label input,
+.auth-row input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--navy);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.auth-form > label input:focus,
+.auth-row input:focus {
+  border-color: var(--green);
+}
+
+.home .auth-form .home-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.home .auth-error {
+  color: #ff8f8f;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.home .auth-switch {
+  margin-top: 20px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.auth-switch .home-link {
+  font-size: 15px;
+}
+
+/* Sacuvani oglasi */
+.favorites-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.favorites-page h1 {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.favorites-message {
+  margin-top: 28px;
+  padding: 56px 24px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.favorites-message h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.home .favorites-message p {
+  margin: 6px 0 22px;
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 22px;
+  }
+
+  .auth-row {
+    grid-template-columns: 1fr;
+  }
+}

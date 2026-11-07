@@ -2,6 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import SearchRoom from './pages/SearchRooms'
 import RoomPage from './pages/RoomPage'
+import AddRoom from './pages/AddRoom'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
+import FavoriteRooms from './pages/FavoriteRooms'
+import { AuthProvider } from './context/AuthContext'
 
 
 const router=createBrowserRouter([
@@ -15,8 +20,24 @@ const router=createBrowserRouter([
   element:<SearchRoom/>
 },
 {
-  path:'/room',
+  path:'/room/:id',
   element:<RoomPage/>
+},
+{
+  path:'/addRoom',
+  element:<AddRoom/>
+},
+{
+  path:'/login',
+  element:<Login/>
+},
+{
+  path:'/signUp',
+  element:<SignUp/>
+},
+{
+  path:'/favoriteRooms',
+  element:<FavoriteRooms/>
 }
 
 ]);
@@ -24,9 +45,10 @@ const router=createBrowserRouter([
 function App() {
  return (
       
-      <RouterProvider router={router}/>
-    
-        
+      <AuthProvider>
+        <RouterProvider router={router}/>
+      </AuthProvider>
+
     )
 }
 
